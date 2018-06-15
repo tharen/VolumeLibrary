@@ -48,12 +48,9 @@ set(CMAKE_C_FLAGS_DEBUG "${debug_flags}")
 # Compile sources into objects
 add_library(${vollib}_objs OBJECT ${vollib_sources})
 
-file(WRITE null.f "")
-
 # Create a static library
 add_library(${vollib}_static STATIC $<TARGET_OBJECTS:${vollib}_objs>)
-# FIXME: Workaround for bug with object library builds
-target_sources(${vollib}_static PRIVATE)
+target_sources(${vollib}_static PRIVATE) # FIXME: Workaround for bug with object library builds
 set_target_properties(${vollib}_static PROPERTIES
     LINKER_LANGUAGE Fortran
     )
@@ -61,8 +58,7 @@ set(DEPS ${vollib}_static)
 
 # Link a shared library
 add_library(${vollib} SHARED $<TARGET_OBJECTS:${vollib}_objs>)
-# FIXME: Workaround for bug with object library builds
-target_sources(${vollib} PRIVATE)
+target_sources(${vollib} PRIVATE) # FIXME: Workaround for bug with object library builds
 set_target_properties(${vollib} PROPERTIES
     LINKER_LANGUAGE Fortran
     )
