@@ -1,0 +1,32 @@
+GCC port of the National Volume Estimator Library (NVEL)
+
+This is a fork of the NVEL project using the fortran compiler (gfortran) from the GNU Compiler Collection (GCC) through MinGW as a build process instead of the Intel Fortran Compiler (ifort). 
+
+This documentation has been written for and tested on 64-bit Windows 10 (home version) and nothing else.
+
+The project consists of the following folder structure:
+
+src
+	--BIN
+	--BUILD
+	--MOD
+Makefile
+	
+SRC is where the source fortran files (.f) are located
+
+BIN is an empty directory where the completed dll will be compiled to
+
+MOD is where module source files are located
+
+Build Steps:
+
+0. You should have MinGW installe (https://mingw-w64.org/doku.php). To check, open a command prompt and run 'gcc --version' to see info on your installed version.
+
+1. Open a command prompt windows and cd into the base directory where the makefile is located(gfortran_build)
+
+2. run 'mingw32-make' this will trigger the build. Compiler output can be output to a text file with the command mingw32-make >CompileReport.txt
+
+Notes:
+
+The compiled functions names will be "mangled" when compiled, so capitalization may have changed and underscores may be added. 
+Typically, the names tend to be made lowercase with a leading underscore. E.g. FORTRAN function/subroutine name VERNUM will be mangled to vernum_
