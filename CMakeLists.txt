@@ -1,9 +1,10 @@
+project(VolumeLibrary Fortran)
 cmake_minimum_required(VERSION 3.11)
 enable_language (Fortran)
 
 # Read the source file names as a list
 #file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/_sources.txt" vollib_sources)
-file(GLOB vollib_sources . *.f)
+file(GLOB vollib_sources .. *.f)
 
 if (TARGET_32BIT)
     set(arch_flags "-m32")
