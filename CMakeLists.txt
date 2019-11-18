@@ -4,7 +4,7 @@ enable_language (Fortran)
 
 # Read the source file names as a list
 #file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/_sources.txt" vollib_sources)
-file(GLOB vollib_sources .. *.f)
+file(GLOB vollib_sources . *.f *.F)
 
 if (TARGET_32BIT)
     set(arch_flags "-m32")
@@ -48,6 +48,16 @@ set(CMAKE_C_FLAGS_DEBUG "${debug_flags}")
 
 # Compile sources into objects
 add_library(${vollib}_objs OBJECT ${vollib_sources})
+
+##---CMake Variables
+#file(WRITE "cmakevars.txt" "PyNVEL CMake Variables")
+#get_cmake_property(_variableNames VARIABLES)
+#foreach (_variableName ${_variableNames})
+#    file(APPEND
+#            "cmakevars.txt"
+#            "${_variableName}=${${_variableName}}\n"
+#            )
+#endforeach()
 
 # Create a static library
 add_library(${vollib}_static STATIC $<TARGET_OBJECTS:${vollib}_objs>)
